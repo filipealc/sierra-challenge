@@ -1,0 +1,526 @@
+  [1m[35m (144.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (22.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4988211283781558700)[0m
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateWarehouses (20231112203155)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (30.6ms)[0m  [1m[35mCREATE TABLE "warehouses" ("id" bigserial primary key, "name" character varying, "location" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (2.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231112203155"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (3.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (6.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2023-11-12 20:35:30.473438"], ["updated_at", "2023-11-12 20:35:30.473438"]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(4988211283781558700)[0m
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4988211283781558700)[0m
+  [1m[35m (4.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCustomers (20231112203614)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (25.3ms)[0m  [1m[35mCREATE TABLE "customers" ("id" bigserial primary key, "name" character varying, "address" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231112203614"]]
+  [1m[36mTRANSACTION (43.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (4.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(4988211283781558700)[0m
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4988211283781558700)[0m
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(4988211283781558700)[0m
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/customers" for 192.168.65.1 at 2023-11-12 20:44:16 +0000
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CustomersController#create as */*
+  Parameters: {"customer"=>{"name"=>"John Doe", "address"=>"456 Elm St, Othertown, OT"}}
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/customers_controller.rb:6:in `create'
+  [1m[36mCustomer Create (4.8ms)[0m  [1m[32mINSERT INTO "customers" ("name", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "John Doe"], ["address", "456 Elm St, Othertown, OT"], ["created_at", "2023-11-12 20:44:17.337809"], ["updated_at", "2023-11-12 20:44:17.337809"]]
+  ↳ app/controllers/customers_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/customers_controller.rb:6:in `create'
+Completed 201 Created in 82ms (Views: 0.7ms | ActiveRecord: 15.5ms | Allocations: 10467)
+
+
+Started POST "/warehouses" for 192.168.65.1 at 2023-11-12 20:48:03 +0000
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by WarehousesController#create as */*
+  Parameters: {"warehouse"=>{"name"=>"Central Warehouse", "location"=>"123 Main St, Anytown, AN", "customer_id"=>1}}
+[31mUnpermitted parameter: :customer_id[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/warehouses_controller.rb:6:in `create'
+  [1m[36mWarehouse Create (10.3ms)[0m  [1m[32mINSERT INTO "warehouses" ("name", "location", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Central Warehouse"], ["location", "123 Main St, Anytown, AN"], ["created_at", "2023-11-12 20:48:03.379826"], ["updated_at", "2023-11-12 20:48:03.379826"]]
+  ↳ app/controllers/warehouses_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/warehouses_controller.rb:6:in `create'
+Completed 201 Created in 33ms (Views: 0.4ms | ActiveRecord: 14.8ms | Allocations: 4564)
+
+
+Started GET "/warehouses/1/distance_to_customer/1" for 192.168.65.1 at 2023-11-12 20:54:37 +0000
+Processing by WarehousesController#distance_to_customer as */*
+  Parameters: {"warehouse_id"=>"1", "customer_id"=>"1"}
+  [1m[36mWarehouse Load (1.1ms)[0m  [1m[34mSELECT "warehouses".* FROM "warehouses" WHERE "warehouses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:15:in `distance_to_customer'
+  [1m[36mCustomer Load (1.1ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:16:in `distance_to_customer'
+Completed 200 OK in 52ms (Views: 0.1ms | ActiveRecord: 11.0ms | Allocations: 10724)
+
+
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4988211283781558700)[0m
+  [1m[35m (7.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (5.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_advisory_unlock(4988211283781558700)[0m
+  [1m[35m (6.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/warehouses/1/distance_to_customer/1" for 192.168.65.1 at 2023-11-12 21:14:27 +0000
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by WarehousesController#distance_to_customer as */*
+  Parameters: {"warehouse_id"=>"1", "customer_id"=>"1"}
+  [1m[36mWarehouse Load (2.1ms)[0m  [1m[34mSELECT "warehouses".* FROM "warehouses" WHERE "warehouses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:15:in `distance_to_customer'
+  [1m[36mCustomer Load (3.8ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:16:in `distance_to_customer'
+Completed 500 Internal Server Error in 104ms (ActiveRecord: 18.1ms | Allocations: 10986)
+
+
+  
+NameError (uninitialized constant WarehousesController::DistanceCalculator):
+  
+app/controllers/warehouses_controller.rb:19:in `distance_to_customer'
+Started GET "/warehouses/1/distance_to_customer/1.json" for 192.168.65.1 at 2023-11-12 21:15:39 +0000
+Processing by WarehousesController#distance_to_customer as JSON
+  Parameters: {"warehouse_id"=>"1", "customer_id"=>"1"}
+  [1m[36mWarehouse Load (0.4ms)[0m  [1m[34mSELECT "warehouses".* FROM "warehouses" WHERE "warehouses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:15:in `distance_to_customer'
+  [1m[36mCustomer Load (0.5ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:16:in `distance_to_customer'
+Completed 500 Internal Server Error in 181ms (ActiveRecord: 0.9ms | Allocations: 1002)
+
+
+  
+NameError (uninitialized constant WarehousesController::DistanceCalculator):
+  
+app/controllers/warehouses_controller.rb:19:in `distance_to_customer'
+Started GET "/warehouses/1/distance_to_customer/1" for 192.168.65.1 at 2023-11-12 21:16:06 +0000
+Processing by WarehousesController#distance_to_customer as */*
+  Parameters: {"warehouse_id"=>"1", "customer_id"=>"1"}
+  [1m[36mWarehouse Load (0.7ms)[0m  [1m[34mSELECT "warehouses".* FROM "warehouses" WHERE "warehouses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:15:in `distance_to_customer'
+  [1m[36mCustomer Load (0.6ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:16:in `distance_to_customer'
+Completed 500 Internal Server Error in 57ms (ActiveRecord: 15.0ms | Allocations: 7320)
+
+
+  
+ArgumentError (tried to create Proc object without a block):
+  
+app/services/distance_calculator_service.rb:15:in `calculate_distance'
+app/controllers/warehouses_controller.rb:19:in `distance_to_customer'
+Started GET "/warehouses/1/distance_to_customer/1" for 192.168.65.1 at 2023-11-12 21:19:20 +0000
+Processing by WarehousesController#distance_to_customer as */*
+  Parameters: {"warehouse_id"=>"1", "customer_id"=>"1"}
+  [1m[36mWarehouse Load (0.4ms)[0m  [1m[34mSELECT "warehouses".* FROM "warehouses" WHERE "warehouses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:15:in `distance_to_customer'
+  [1m[36mCustomer Load (0.6ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:16:in `distance_to_customer'
+Completed 500 Internal Server Error in 36ms (ActiveRecord: 6.2ms | Allocations: 6986)
+
+
+  
+ArgumentError (tried to create Proc object without a block):
+  
+app/services/distance_calculator_service.rb:15:in `calculate_distance'
+app/controllers/warehouses_controller.rb:19:in `distance_to_customer'
+Started GET "/warehouses/1/distance_to_customer/1" for 192.168.65.1 at 2023-11-12 21:19:51 +0000
+Processing by WarehousesController#distance_to_customer as */*
+  Parameters: {"warehouse_id"=>"1", "customer_id"=>"1"}
+  [1m[36mWarehouse Load (0.5ms)[0m  [1m[34mSELECT "warehouses".* FROM "warehouses" WHERE "warehouses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:15:in `distance_to_customer'
+  [1m[36mCustomer Load (0.4ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:16:in `distance_to_customer'
+Completed 500 Internal Server Error in 33ms (ActiveRecord: 6.7ms | Allocations: 7077)
+
+
+  
+ArgumentError (tried to create Proc object without a block):
+  
+app/services/distance_calculator_service.rb:10:in `calculate_distance'
+app/controllers/warehouses_controller.rb:19:in `distance_to_customer'
+Started GET "/warehouses/1/distance_to_customer/1" for 192.168.65.1 at 2023-11-12 21:19:54 +0000
+Processing by WarehousesController#distance_to_customer as */*
+  Parameters: {"warehouse_id"=>"1", "customer_id"=>"1"}
+  [1m[36mWarehouse Load (1.2ms)[0m  [1m[34mSELECT "warehouses".* FROM "warehouses" WHERE "warehouses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:15:in `distance_to_customer'
+  [1m[36mCustomer Load (0.9ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:16:in `distance_to_customer'
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 2.1ms | Allocations: 1213)
+
+
+  
+ArgumentError (tried to create Proc object without a block):
+  
+app/services/distance_calculator_service.rb:10:in `calculate_distance'
+app/controllers/warehouses_controller.rb:19:in `distance_to_customer'
+Started GET "/warehouses/1/distance_to_customer/1" for 192.168.65.1 at 2023-11-12 21:21:43 +0000
+Processing by WarehousesController#distance_to_customer as */*
+  Parameters: {"warehouse_id"=>"1", "customer_id"=>"1"}
+  [1m[36mWarehouse Load (0.3ms)[0m  [1m[34mSELECT "warehouses".* FROM "warehouses" WHERE "warehouses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:15:in `distance_to_customer'
+  [1m[36mCustomer Load (0.4ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:16:in `distance_to_customer'
+Completed 500 Internal Server Error in 36ms (ActiveRecord: 8.3ms | Allocations: 7091)
+
+
+  
+ArgumentError (tried to create Proc object without a block):
+  
+app/services/distance_calculator_service.rb:11:in `calculate_distance'
+app/controllers/warehouses_controller.rb:19:in `distance_to_customer'
+Started GET "/warehouses/1/distance_to_customer/1" for 192.168.65.1 at 2023-11-12 21:22:49 +0000
+Processing by WarehousesController#distance_to_customer as */*
+  Parameters: {"warehouse_id"=>"1", "customer_id"=>"1"}
+  [1m[36mWarehouse Load (0.4ms)[0m  [1m[34mSELECT "warehouses".* FROM "warehouses" WHERE "warehouses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:15:in `distance_to_customer'
+  [1m[36mCustomer Load (0.7ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:16:in `distance_to_customer'
+Completed 500 Internal Server Error in 45ms (ActiveRecord: 7.4ms | Allocations: 7055)
+
+
+  
+ArgumentError (tried to create Proc object without a block):
+  
+app/services/distance_calculator_service.rb:9:in `calculate_distance'
+app/controllers/warehouses_controller.rb:19:in `distance_to_customer'
+Started GET "/warehouses/1/distance_to_customer/1" for 192.168.65.1 at 2023-11-12 21:23:01 +0000
+Processing by WarehousesController#distance_to_customer as */*
+  Parameters: {"warehouse_id"=>"1", "customer_id"=>"1"}
+  [1m[36mWarehouse Load (0.3ms)[0m  [1m[34mSELECT "warehouses".* FROM "warehouses" WHERE "warehouses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:15:in `distance_to_customer'
+  [1m[36mCustomer Load (0.4ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:16:in `distance_to_customer'
+Completed 500 Internal Server Error in 36ms (ActiveRecord: 7.1ms | Allocations: 7058)
+
+
+  
+ArgumentError (tried to create Proc object without a block):
+  
+app/services/distance_calculator_service.rb:9:in `calculate_distance'
+app/controllers/warehouses_controller.rb:19:in `distance_to_customer'
+Started GET "/warehouses/1/distance_to_customer/1" for 192.168.65.1 at 2023-11-12 21:27:25 +0000
+Processing by WarehousesController#distance_to_customer as */*
+  Parameters: {"warehouse_id"=>"1", "customer_id"=>"1"}
+  [1m[36mWarehouse Load (0.7ms)[0m  [1m[34mSELECT "warehouses".* FROM "warehouses" WHERE "warehouses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:15:in `distance_to_customer'
+  [1m[36mCustomer Load (0.8ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:16:in `distance_to_customer'
+Completed 500 Internal Server Error in 63ms (ActiveRecord: 12.1ms | Allocations: 7065)
+
+
+  
+ArgumentError (tried to create Proc object without a block):
+  
+app/services/distance_calculator_service.rb:9:in `calculate_distance'
+app/controllers/warehouses_controller.rb:19:in `distance_to_customer'
+Started GET "/warehouses/1/distance_to_customer/1" for 192.168.65.1 at 2023-11-12 21:28:38 +0000
+Processing by WarehousesController#distance_to_customer as */*
+  Parameters: {"warehouse_id"=>"1", "customer_id"=>"1"}
+  [1m[36mWarehouse Load (0.3ms)[0m  [1m[34mSELECT "warehouses".* FROM "warehouses" WHERE "warehouses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:15:in `distance_to_customer'
+  [1m[36mCustomer Load (0.4ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:16:in `distance_to_customer'
+Completed 500 Internal Server Error in 32ms (ActiveRecord: 6.6ms | Allocations: 7049)
+
+
+  
+ArgumentError (tried to create Proc object without a block):
+  
+app/services/distance_calculator_service.rb:9:in `calculate_distance'
+app/controllers/warehouses_controller.rb:19:in `distance_to_customer'
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4988211283781558700)[0m
+  [1m[35m (3.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (4.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(4988211283781558700)[0m
+  [1m[35m (3.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/warehouses/1/distance_to_customer/1" for 192.168.65.1 at 2023-11-12 21:40:17 +0000
+  [1m[35m (10.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by WarehousesController#distance_to_customer as */*
+  Parameters: {"warehouse_id"=>"1", "customer_id"=>"1"}
+  [1m[36mWarehouse Load (24.4ms)[0m  [1m[34mSELECT "warehouses".* FROM "warehouses" WHERE "warehouses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:15:in `distance_to_customer'
+  [1m[36mCustomer Load (7.2ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:16:in `distance_to_customer'
+Completed 500 Internal Server Error in 1952ms (ActiveRecord: 76.7ms | Allocations: 23071)
+
+
+  
+GoogleMapsService::Error::RequestDeniedError (This API project is not authorized to use this API.):
+  
+app/services/distance_calculator_service.rb:9:in `calculate_distance'
+app/controllers/warehouses_controller.rb:19:in `distance_to_customer'
+Started GET "/warehouses/1/distance_to_customer/1" for 192.168.65.1 at 2023-11-12 21:42:45 +0000
+Processing by WarehousesController#distance_to_customer as */*
+  Parameters: {"warehouse_id"=>"1", "customer_id"=>"1"}
+  [1m[36mWarehouse Load (0.4ms)[0m  [1m[34mSELECT "warehouses".* FROM "warehouses" WHERE "warehouses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:15:in `distance_to_customer'
+  [1m[36mCustomer Load (0.5ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:16:in `distance_to_customer'
+Completed 500 Internal Server Error in 261ms (ActiveRecord: 1.0ms | Allocations: 2368)
+
+
+  
+GoogleMapsService::Error::ApiError (GoogleMapsService::Error::ApiError):
+  
+app/services/distance_calculator_service.rb:9:in `calculate_distance'
+app/controllers/warehouses_controller.rb:19:in `distance_to_customer'
+Started GET "/warehouses/1/distance_to_customer/1" for 192.168.65.1 at 2023-11-12 21:43:10 +0000
+Processing by WarehousesController#distance_to_customer as */*
+  Parameters: {"warehouse_id"=>"1", "customer_id"=>"1"}
+  [1m[36mWarehouse Load (0.4ms)[0m  [1m[34mSELECT "warehouses".* FROM "warehouses" WHERE "warehouses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:15:in `distance_to_customer'
+  [1m[36mCustomer Load (0.6ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:16:in `distance_to_customer'
+Completed 500 Internal Server Error in 227ms (ActiveRecord: 1.0ms | Allocations: 2310)
+
+
+  
+GoogleMapsService::Error::ApiError (GoogleMapsService::Error::ApiError):
+  
+app/services/distance_calculator_service.rb:9:in `calculate_distance'
+app/controllers/warehouses_controller.rb:19:in `distance_to_customer'
+Started GET "/warehouses/1/distance_to_customer/1" for 192.168.65.1 at 2023-11-12 21:45:29 +0000
+Processing by WarehousesController#distance_to_customer as */*
+  Parameters: {"warehouse_id"=>"1", "customer_id"=>"1"}
+  [1m[36mWarehouse Load (0.5ms)[0m  [1m[34mSELECT "warehouses".* FROM "warehouses" WHERE "warehouses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:15:in `distance_to_customer'
+  [1m[36mCustomer Load (0.5ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:16:in `distance_to_customer'
+Completed 400 Bad Request in 545ms (Views: 1.4ms | ActiveRecord: 1.0ms | Allocations: 3598)
+
+
+Started GET "/warehouses/1/distance_to_customer/1" for 192.168.65.1 at 2023-11-12 21:45:46 +0000
+Processing by WarehousesController#distance_to_customer as */*
+  Parameters: {"warehouse_id"=>"1", "customer_id"=>"1"}
+  [1m[36mWarehouse Load (0.8ms)[0m  [1m[34mSELECT "warehouses".* FROM "warehouses" WHERE "warehouses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:15:in `distance_to_customer'
+  [1m[36mCustomer Load (0.7ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:16:in `distance_to_customer'
+Completed 400 Bad Request in 245ms (Views: 0.3ms | ActiveRecord: 1.5ms | Allocations: 3510)
+
+
+Started GET "/warehouses/1/distance_to_customer/1" for 192.168.65.1 at 2023-11-12 21:46:08 +0000
+Processing by WarehousesController#distance_to_customer as */*
+  Parameters: {"warehouse_id"=>"1", "customer_id"=>"1"}
+  [1m[36mWarehouse Load (0.6ms)[0m  [1m[34mSELECT "warehouses".* FROM "warehouses" WHERE "warehouses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:15:in `distance_to_customer'
+  [1m[36mCustomer Load (0.6ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:16:in `distance_to_customer'
+Completed 500 Internal Server Error in 280ms (ActiveRecord: 11.3ms | Allocations: 8531)
+
+
+  
+TypeError (no implicit conversion of Symbol into Integer):
+  
+app/services/distance_calculator_service.rb:11:in `calculate_distance'
+app/controllers/warehouses_controller.rb:19:in `distance_to_customer'
+Started GET "/warehouses/1/distance_to_customer/1" for 192.168.65.1 at 2023-11-12 21:53:16 +0000
+Processing by WarehousesController#distance_to_customer as */*
+  Parameters: {"warehouse_id"=>"1", "customer_id"=>"1"}
+  [1m[36mWarehouse Load (1.8ms)[0m  [1m[34mSELECT "warehouses".* FROM "warehouses" WHERE "warehouses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:15:in `distance_to_customer'
+  [1m[36mCustomer Load (1.7ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:16:in `distance_to_customer'
+Completed 500 Internal Server Error in 447ms (ActiveRecord: 14.7ms | Allocations: 12083)
+
+
+  
+TypeError (no implicit conversion of Symbol into Integer):
+  
+app/services/distance_calculator_service.rb:11:in `calculate_distance'
+app/controllers/warehouses_controller.rb:19:in `distance_to_customer'
+Started GET "/warehouses/1/distance_to_customer/1" for 192.168.65.1 at 2023-11-12 21:53:28 +0000
+Processing by WarehousesController#distance_to_customer as */*
+  Parameters: {"warehouse_id"=>"1", "customer_id"=>"1"}
+  [1m[36mWarehouse Load (0.4ms)[0m  [1m[34mSELECT "warehouses".* FROM "warehouses" WHERE "warehouses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:15:in `distance_to_customer'
+  [1m[36mCustomer Load (0.7ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:16:in `distance_to_customer'
+Completed 500 Internal Server Error in 182ms (ActiveRecord: 1.0ms | Allocations: 2441)
+
+
+  
+GoogleMapsService::Error::RequestDeniedError (This API project is not authorized to use this API.):
+  
+app/services/distance_calculator_service.rb:9:in `calculate_distance'
+app/controllers/warehouses_controller.rb:19:in `distance_to_customer'
+Started GET "/warehouses/1/distance_to_customer/1" for 192.168.65.1 at 2023-11-12 21:54:03 +0000
+Processing by WarehousesController#distance_to_customer as */*
+  Parameters: {"warehouse_id"=>"1", "customer_id"=>"1"}
+  [1m[36mWarehouse Load (0.5ms)[0m  [1m[34mSELECT "warehouses".* FROM "warehouses" WHERE "warehouses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:15:in `distance_to_customer'
+  [1m[36mCustomer Load (0.6ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:16:in `distance_to_customer'
+Completed 500 Internal Server Error in 220ms (ActiveRecord: 1.1ms | Allocations: 3816)
+
+
+  
+TypeError (no implicit conversion of Symbol into Integer):
+  
+app/services/distance_calculator_service.rb:11:in `calculate_distance'
+app/controllers/warehouses_controller.rb:19:in `distance_to_customer'
+Started GET "/warehouses/1/distance_to_customer/1" for 192.168.65.1 at 2023-11-12 21:54:43 +0000
+Processing by WarehousesController#distance_to_customer as */*
+  Parameters: {"warehouse_id"=>"1", "customer_id"=>"1"}
+  [1m[36mWarehouse Load (0.5ms)[0m  [1m[34mSELECT "warehouses".* FROM "warehouses" WHERE "warehouses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:15:in `distance_to_customer'
+  [1m[36mCustomer Load (0.5ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:16:in `distance_to_customer'
+Completed 500 Internal Server Error in 274ms (ActiveRecord: 17.8ms | Allocations: 8836)
+
+
+  
+NoMethodError (undefined method `[]' for nil:NilClass):
+  
+app/services/distance_calculator_service.rb:11:in `calculate_distance'
+app/controllers/warehouses_controller.rb:19:in `distance_to_customer'
+  [1m[36mCustomer Load (1.0ms)[0m  [1m[34mSELECT "customers".* FROM "customers" ORDER BY "customers"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mWarehouse Load (2.1ms)[0m  [1m[34mSELECT "warehouses".* FROM "warehouses" ORDER BY "warehouses"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+Started GET "/warehouses/1/distance_to_customer/1" for 192.168.65.1 at 2023-11-12 21:59:01 +0000
+Processing by WarehousesController#distance_to_customer as */*
+  Parameters: {"warehouse_id"=>"1", "customer_id"=>"1"}
+  [1m[36mWarehouse Load (0.5ms)[0m  [1m[34mSELECT "warehouses".* FROM "warehouses" WHERE "warehouses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:15:in `distance_to_customer'
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:16:in `distance_to_customer'
+Completed 200 OK in 341ms (Views: 0.4ms | ActiveRecord: 5.8ms | Allocations: 8494)
+
+
+Started GET "/warehouses/1/distance_to_customer/1" for 192.168.65.1 at 2023-11-12 22:01:05 +0000
+Processing by WarehousesController#distance_to_customer as */*
+  Parameters: {"warehouse_id"=>"1", "customer_id"=>"1"}
+  [1m[36mWarehouse Load (0.5ms)[0m  [1m[34mSELECT "warehouses".* FROM "warehouses" WHERE "warehouses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:15:in `distance_to_customer'
+  [1m[36mCustomer Load (1.0ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:16:in `distance_to_customer'
+Completed 200 OK in 421ms (Views: 0.5ms | ActiveRecord: 9.7ms | Allocations: 8059)
+
+
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4988211283781558700)[0m
+  [1m[35m (3.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.9ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(4988211283781558700)[0m
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4988211283781558700)[0m
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(4988211283781558700)[0m
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (5.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4988211283781558700)[0m
+  [1m[35m (5.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (4.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_advisory_unlock(4988211283781558700)[0m
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/authenticaet" for 192.168.65.1 at 2023-11-12 22:15:00 +0000
+Started GET "/authenticate" for 192.168.65.1 at 2023-11-12 22:15:00 +0000
+  [1m[35m (2.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/authenticate"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/authenticaet"):
+  
+Started GET "/authenticate" for 192.168.65.1 at 2023-11-12 22:15:04 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/authenticate"):
+  
+Started POST "/authenticate" for 192.168.65.1 at 2023-11-12 22:15:10 +0000
+Processing by AuthenticationController#create as */*
+Completed 200 OK in 38ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 2895)
+
+
+Started GET "/warehouses/1/distance_to_customer/1" for 192.168.65.1 at 2023-11-12 22:20:04 +0000
+Processing by WarehousesController#distance_to_customer as */*
+  Parameters: {"warehouse_id"=>"1", "customer_id"=>"1"}
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 138)
+
+
+Started GET "/warehouses/1/distance_to_customer/1" for 192.168.65.1 at 2023-11-12 22:20:34 +0000
+Processing by WarehousesController#distance_to_customer as */*
+  Parameters: {"warehouse_id"=>"1", "customer_id"=>"1"}
+  [1m[36mWarehouse Load (3.6ms)[0m  [1m[34mSELECT "warehouses".* FROM "warehouses" WHERE "warehouses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:15:in `distance_to_customer'
+  [1m[36mCustomer Load (2.9ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/warehouses_controller.rb:16:in `distance_to_customer'
+Completed 200 OK in 521ms (Views: 0.3ms | ActiveRecord: 22.5ms | Allocations: 15471)
+
+
+Started POST "/authenticate" for 192.168.65.1 at 2023-11-12 22:20:40 +0000
+Processing by AuthenticationController#create as */*
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 184)
+
+
+Started GET "/warehouses/1/distance_to_customer/1" for 192.168.65.1 at 2023-11-12 22:22:02 +0000
+Processing by WarehousesController#distance_to_customer as */*
+  Parameters: {"warehouse_id"=>"1", "customer_id"=>"1"}
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 173)
+
+
+Started POST "/authenticate" for 192.168.65.1 at 2023-11-12 22:46:23 +0000
+Processing by AuthenticationController#create as */*
+Completed 401 Unauthorized in 4ms (Views: 2.0ms | Allocations: 145)
+
+
+Started POST "/authenticate" for 192.168.65.1 at 2023-11-12 22:47:22 +0000
+Processing by AuthenticationController#create as */*
+  Parameters: {"username"=>"admin", "password"=>"[FILTERED]", "authentication"=>{"username"=>"admin", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 2ms (Allocations: 113)
+
+
+  
+ArgumentError (missing keyword: :user_id):
+  
+app/controllers/authentication_controller.rb:25:in `issue_token'
+app/controllers/authentication_controller.rb:9:in `create'
+Started POST "/authenticate" for 192.168.65.1 at 2023-11-12 22:47:42 +0000
+Processing by AuthenticationController#create as */*
+  Parameters: {"username"=>"admin", "password"=>"[FILTERED]", "authentication"=>{"username"=>"admin", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 0ms (Allocations: 138)
+
+
+  
+ArgumentError (missing keyword: :user_id):
+  
+app/controllers/authentication_controller.rb:25:in `issue_token'
+app/controllers/authentication_controller.rb:9:in `create'
+Started POST "/authenticate" for 192.168.65.1 at 2023-11-12 22:47:45 +0000
+Processing by AuthenticationController#create as */*
+  Parameters: {"username"=>"admin", "password"=>"[FILTERED]", "authentication"=>{"username"=>"admin", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 0ms (Allocations: 110)
+
+
+  
+ArgumentError (missing keyword: :user_id):
+  
+app/controllers/authentication_controller.rb:25:in `issue_token'
+app/controllers/authentication_controller.rb:9:in `create'
+Started POST "/authenticate" for 192.168.65.1 at 2023-11-12 22:47:46 +0000
+Processing by AuthenticationController#create as */*
+  Parameters: {"username"=>"admin", "password"=>"[FILTERED]", "authentication"=>{"username"=>"admin", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 0ms (Allocations: 108)
+
+
+  
+ArgumentError (missing keyword: :user_id):
+  
+app/controllers/authentication_controller.rb:25:in `issue_token'
+app/controllers/authentication_controller.rb:9:in `create'
+Started POST "/authenticate" for 192.168.65.1 at 2023-11-12 22:47:56 +0000
+Processing by AuthenticationController#create as */*
+  Parameters: {"username"=>"admin", "password"=>"[FILTERED]", "authentication"=>{"username"=>"admin", "password"=>"[FILTERED]"}}
+Completed 200 OK in 7ms (Views: 0.4ms | Allocations: 203)
+
+
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4988211283781558700)[0m
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (13.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(4988211283781558700)[0m
+  [1m[35m (5.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
